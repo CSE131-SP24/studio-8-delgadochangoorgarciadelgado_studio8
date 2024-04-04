@@ -5,10 +5,19 @@ public class SelectAllQuestion extends MultipleChoiceQuestion {
 	public SelectAllQuestion(String prompt, String answer, String[] choices) {
 		//Hint: 1 point per choice
 		//FIXME
+		super(prompt,answer, choices.length, choices);
 	}
 	
 	public int checkAnswer(String givenAnswer) {
 		//FIXME Should return partial credit (if earned)!
+		int incorrectvalues = 0;
+		String answer = this.getAnswer();
+		for (int i=0;i< answer.length();i++);{
+			char correctAnswer = answer.charAt(i);
+			if(givenAnswer.indexOf(correctAnswer)==-1) {
+				incorrectvalues++;
+			}
+		}
 		return 0;
 	}
 
@@ -18,7 +27,6 @@ public class SelectAllQuestion extends MultipleChoiceQuestion {
 		int incorrectValues = findMissingCharacters(givenAnswer, answer);
 		return incorrectValues;
 	}
-	
 	private int findIncorrectGivenAnswers(String givenAnswer) {
 		String answer = this.getAnswer();
 		//how many letters are in the given answer but not the correct answer?
